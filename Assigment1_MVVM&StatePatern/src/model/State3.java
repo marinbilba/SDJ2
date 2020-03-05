@@ -42,7 +42,7 @@ private PropertyChangeSupport support;
     {
       try
       {
-        Thread.sleep(50000);
+        Thread.sleep(40000);
         turnDown(radiator);
       }
       catch (InterruptedException e)

@@ -47,14 +47,14 @@ public class ManageController
         {
           if (currentSliderValue < value)
           {
+            System.out.println(value);
             vm.turnUp();
-            stateSlider.focusedProperty();
-            stateSlider.setValue(statePower.getValue());
             levelLabel
                 .setText(String.valueOf(statePower.getValue().intValue()));
           }
           else
           {
+            System.out.println(value);
             vm.turnDown();
             levelLabel
                 .setText(String.valueOf(statePower.getValue().intValue()));

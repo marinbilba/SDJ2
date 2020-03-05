@@ -45,7 +45,7 @@ public class LogsVM
 
   }
 
-  private void updateExternalTemperatureList(PropertyChangeEvent evt)
+  private synchronized void updateExternalTemperatureList(PropertyChangeEvent evt)
   {
     Temperature temp = (Temperature) evt.getNewValue();
     if (externalTemperatures.size() == 19)
@@ -74,7 +74,7 @@ public class LogsVM
     {
       if (internalTemperatures1.size() == 19)
       {
-        internalTemperatures1.removeAll(internalTemperatures1.remove(0));
+        internalTemperatures1.remove(0);
         internalTemperatures1.add((Temperature) evt.getNewValue());
         Platform.runLater(() -> series.getData()
             .add(new XYChart.Data<String, Double>(t1, temp.getValue())));
@@ -92,7 +92,7 @@ public class LogsVM
     {
       if (internalTemperatures2.size() == 19)
       {
-        internalTemperatures2.removeAll(internalTemperatures2.remove(0));
+        internalTemperatures2.remove(0);
         internalTemperatures2.add((Temperature) evt.getNewValue());
         Platform.runLater(() -> series2.getData()
             .add(new XYChart.Data<String, Double>(t2, temp.getValue())));
