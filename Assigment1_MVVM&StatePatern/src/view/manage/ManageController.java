@@ -36,25 +36,23 @@ public class ManageController
     statePower = new SimpleDoubleProperty();
     statePower.bindBidirectional(vm.radiatorStateProperty());
 
-    stateSlider.valueProperty().addListener(new ChangeListener<Number>()
+    stateSlider.valueProperty().addListener(new ChangeListener<>()
     {
       @Override public void changed(
           ObservableValue<? extends Number> observableValue, Number number,
           Number t1)
       {
-        int value = (int) t1.intValue();
+        int value = t1.intValue();
         if (currentSliderValue != value)
         {
           if (currentSliderValue < value)
           {
-            System.out.println(value);
             vm.turnUp();
             levelLabel
                 .setText(String.valueOf(statePower.getValue().intValue()));
           }
           else
           {
-            System.out.println(value);
             vm.turnDown();
             levelLabel
                 .setText(String.valueOf(statePower.getValue().intValue()));

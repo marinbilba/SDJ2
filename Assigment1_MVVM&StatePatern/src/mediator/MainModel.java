@@ -4,8 +4,6 @@ import java.beans.PropertyChangeListener;
 
 public interface MainModel
 {
-  // Add in uml
-
   void updateExternalTemperature(String id, double value);
   void updateTemperature(String id, double value);
   void turnUp();

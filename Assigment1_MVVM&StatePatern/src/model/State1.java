@@ -2,7 +2,8 @@ package model;
 
 public class State1 implements StateControl
 {
-  private static final int POWER=1;
+  private static final int POWER = 1;
+
   @Override public void turnUp(Radiator radiator)
   {
     System.out.println("Radiator switched to state 2");
@@ -14,6 +15,7 @@ public class State1 implements StateControl
     System.out.println("Radiator switched to state 0");
     radiator.setState(new OffState());
   }
+
   @Override public int getPower()
   {
     return POWER;

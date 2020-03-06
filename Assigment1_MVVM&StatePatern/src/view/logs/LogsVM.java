@@ -45,7 +45,8 @@ public class LogsVM
 
   }
 
-  private synchronized void updateExternalTemperatureList(PropertyChangeEvent evt)
+  private synchronized void updateExternalTemperatureList(
+      PropertyChangeEvent evt)
   {
     Temperature temp = (Temperature) evt.getNewValue();
     if (externalTemperatures.size() == 19)

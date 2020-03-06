@@ -1,7 +1,10 @@
 package view.manage;
 
 import javafx.application.Platform;
-import javafx.beans.property.*;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import mediator.MainModel;
 import model.Temperature;
 
@@ -29,24 +32,24 @@ public class ManageVM
         this::updateTemperaturesFields);
     model.addPropertyChangeListener("ExternalTemperatureUpdate",
         this::updateExternalTemperaturesFields);
-        model.addPropertyChangeListener("RadiatorState", this::updateRadiatorState);
+    model.addPropertyChangeListener("RadiatorState", this::updateRadiatorState);
 
   }
 
-    private void updateRadiatorState(PropertyChangeEvent evt)
-    {
-      radiatorState.setValue((Number) evt.getNewValue());
-    }
+  private void updateRadiatorState(PropertyChangeEvent evt)
+  {
+    radiatorState.setValue((Number) evt.getNewValue());
+  }
 
-    public void turnUp()
-    {
-      model.turnUp();
-    }
-    public void turnDown()
-    {
-      model.turnDown();
-    }
+  public void turnUp()
+  {
+    model.turnUp();
+  }
 
+  public void turnDown()
+  {
+    model.turnDown();
+  }
 
   public void updateTemperaturesFields(PropertyChangeEvent evt)
   {
@@ -101,8 +104,6 @@ public class ManageVM
   {
     return lowOrHighLabel;
   }
-
-
 
   public DoubleProperty radiatorStateProperty()
   {

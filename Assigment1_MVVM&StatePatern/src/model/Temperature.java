@@ -23,7 +23,7 @@ public class Temperature
     return id;
   }
 
-//  Used for table
+  //  IMPORTANT The method bellow is used for the table column
   public String getTimeCreated()
   {
     return timeCreated;

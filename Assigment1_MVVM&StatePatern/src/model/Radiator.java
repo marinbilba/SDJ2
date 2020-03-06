@@ -26,7 +26,7 @@ public class Radiator
 
   public int getState()
   {
- return  currentState.getPower();
+    return currentState.getPower();
 
   }
 }

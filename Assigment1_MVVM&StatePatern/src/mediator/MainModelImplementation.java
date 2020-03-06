@@ -13,7 +13,6 @@ public class MainModelImplementation implements MainModel
   private PropertyChangeSupport support;
   private Radiator radiator;
 
-
   public MainModelImplementation()
   {
     support = new PropertyChangeSupport(this);
@@ -27,7 +26,6 @@ public class MainModelImplementation implements MainModel
     return sdfDate.format(now);
   }
 
-  ////  Use for VM
   @Override public void turnUp()
   {
     radiator.turnUp();
@@ -40,24 +38,18 @@ public class MainModelImplementation implements MainModel
     support.firePropertyChange("RadiatorState", null, radiator.getState());
   }
 
-
-
   @Override public void updateExternalTemperature(String id, double value)
   {
-    Temperature temp = new Temperature(id, value,calcTimeStamp());
+    Temperature temp = new Temperature(id, value, calcTimeStamp());
     support.firePropertyChange("ExternalTemperatureUpdate", null, temp);
-//    System.out
-//        .println("External Temperature update: " + id + " " + value);
   }
 
-  //  Use for VM
   @Override public void updateTemperature(String id, double value)
   {
-    Temperature temperature = new Temperature(id, value,calcTimeStamp());
+    Temperature temperature = new Temperature(id, value, calcTimeStamp());
     support.firePropertyChange("TemperatureUpdate", null, temperature);
-//    System.out.println("Temperature update: " + id + " " + value);
-
   }
+
   @Override public void addListener(PropertyChangeListener lstnr)
   {
     support.addPropertyChangeListener(lstnr);

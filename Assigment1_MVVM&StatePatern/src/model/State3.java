@@ -4,14 +4,14 @@ import java.beans.PropertyChangeSupport;
 
 public class State3 implements StateControl
 {
-  private static final int POWER=3;
+  private static final int POWER = 3;
   private Thread thread;
   private Radiator radiator;
-private PropertyChangeSupport support;
+  private PropertyChangeSupport support;
 
   public State3(Radiator radiator)
   {
-    support=new PropertyChangeSupport(this);
+    support = new PropertyChangeSupport(this);
     this.radiator = radiator;
     thread = new Thread(new innerClass());
     thread.start();
@@ -30,6 +30,7 @@ private PropertyChangeSupport support;
     System.out.println(radiator.getState());
     System.out.println("Radiator switched to state 2");
   }
+
   @Override public int getPower()
   {
     return POWER;
