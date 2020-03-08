@@ -43,7 +43,7 @@ public class State3 implements StateControl
     {
       try
       {
-        Thread.sleep(40000);
+        Thread.sleep(6000);
         turnDown(radiator);
       }
       catch (InterruptedException e)

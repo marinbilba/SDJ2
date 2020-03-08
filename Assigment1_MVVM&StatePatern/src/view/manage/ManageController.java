@@ -9,6 +9,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 public class ManageController
 {
@@ -26,16 +28,12 @@ public class ManageController
   private ManageVM vm;
   private ViewHandler vh;
 
-  private DoubleProperty statePower;
   private int currentSliderValue;
 
   public void init(ViewHandler vh, ViewModelFactory vmf)
   {
     this.vh = vh;
     vm = vmf.getManageVM();
-    statePower = new SimpleDoubleProperty();
-    statePower.bindBidirectional(vm.radiatorStateProperty());
-
     stateSlider.valueProperty().addListener(new ChangeListener<>()
     {
       @Override public void changed(
@@ -48,28 +46,26 @@ public class ManageController
           if (currentSliderValue < value)
           {
             vm.turnUp();
-            levelLabel
-                .setText(String.valueOf(statePower.getValue().intValue()));
           }
           else
           {
             vm.turnDown();
-            levelLabel
-                .setText(String.valueOf(statePower.getValue().intValue()));
+
           }
           currentSliderValue = value;
         }
       }
     });
-    t1Temp.textProperty().bindBidirectional(vm.temperatureT1Property());
-    t2Temp.textProperty().bindBidirectional(vm.temperatureT2Property());
-    t0Temp.textProperty().bindBidirectional(vm.temperatureT0Property());
+    t1Temp.textProperty().bind(vm.temperatureT1Property());
+    t2Temp.textProperty().bind(vm.temperatureT2Property());
+    t0Temp.textProperty().bind(vm.temperatureT0Property());
     lowOrHighLabel.textProperty()
-        .bindBidirectional(vm.lowOrHighLabelProperty());
+        .bind(vm.lowOrHighLabelProperty());
+    levelLabel.textProperty().bind(vm.levelLabelProperty());
   }
-
   public void openTemperatureLogs()
   {
     vh.openLogsView();
   }
+
 }

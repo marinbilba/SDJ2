@@ -1,10 +1,7 @@
 package view.manage;
 
 import javafx.application.Platform;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import mediator.MainModel;
 import model.Temperature;
 
@@ -17,8 +14,10 @@ public class ManageVM
   private StringProperty temperatureT2;
   private StringProperty temperatureT0;
 
-  private DoubleProperty radiatorState;
   private StringProperty lowOrHighLabel;
+
+//  NEW
+  private StringProperty levelLabel;
 
   public ManageVM(MainModel model)
   {
@@ -26,19 +25,22 @@ public class ManageVM
     temperatureT0 = new SimpleStringProperty();
     temperatureT1 = new SimpleStringProperty();
     temperatureT2 = new SimpleStringProperty();
-    radiatorState = new SimpleDoubleProperty();
     lowOrHighLabel = new SimpleStringProperty();
+    levelLabel=new SimpleStringProperty();
+
     model.addPropertyChangeListener("TemperatureUpdate",
         this::updateTemperaturesFields);
     model.addPropertyChangeListener("ExternalTemperatureUpdate",
         this::updateExternalTemperaturesFields);
     model.addPropertyChangeListener("RadiatorState", this::updateRadiatorState);
 
+
+
   }
 
   private void updateRadiatorState(PropertyChangeEvent evt)
   {
-    radiatorState.setValue((Number) evt.getNewValue());
+    levelLabel.setValue(String.valueOf(evt.getNewValue()));
   }
 
   public void turnUp()
@@ -105,8 +107,10 @@ public class ManageVM
     return lowOrHighLabel;
   }
 
-  public DoubleProperty radiatorStateProperty()
+//  NEW
+
+  public StringProperty levelLabelProperty()
   {
-    return radiatorState;
+    return levelLabel;
   }
 }
