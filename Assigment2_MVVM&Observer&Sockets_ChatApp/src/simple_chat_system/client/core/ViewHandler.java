@@ -97,8 +97,6 @@ public class ViewHandler
     stage3.setScene(chatPM2);
     stage3.show();
   }
-
-
   private Parent getRootByPath(String path, FXMLLoader loader)
   {
     loader.setLocation(getClass().getResource(path));

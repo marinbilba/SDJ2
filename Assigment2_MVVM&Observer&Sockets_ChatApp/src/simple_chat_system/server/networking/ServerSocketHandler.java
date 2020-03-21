@@ -1,4 +1,4 @@
-package simple_chat_system.server.network;
+package simple_chat_system.server.networking;
 
 import simple_chat_system.transferobjects.*;
 import simple_chat_system.transferobjects.messages.PrivateMessage;

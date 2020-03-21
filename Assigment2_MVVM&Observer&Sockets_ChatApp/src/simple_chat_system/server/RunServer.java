@@ -1,6 +1,6 @@
 package simple_chat_system.server;
 
-import simple_chat_system.server.network.Server;
+import simple_chat_system.server.networking.Server;
 
 public class RunServer
 {

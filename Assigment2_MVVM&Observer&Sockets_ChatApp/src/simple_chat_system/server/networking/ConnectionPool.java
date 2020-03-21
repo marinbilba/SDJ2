@@ -1,4 +1,4 @@
-package simple_chat_system.server.network;
+package simple_chat_system.server.networking;
 
 import simple_chat_system.transferobjects.*;
 import simple_chat_system.transferobjects.messages.PrivateMessage;
@@ -41,6 +41,19 @@ public class ConnectionPool
       }
     }
   }
+  public void sendMessageInPM(PrivateMessage pm)
+  {
+    for (ServerSocketHandler handler : connections)
+    {
+
+      if(handler.getUser().equals(pm.getUserOne())||handler.getUser().equals(pm.getUserTwo()))
+        handler.sendMessageInPM(pm);
+    }
+  }
+  public List<User> getUsers()
+  {
+    return users;
+  }
   public synchronized void addHandler(ServerSocketHandler handler)
   {
     connections.add(handler);
@@ -50,20 +63,5 @@ public class ConnectionPool
   {
     connections.remove(handler);
     users.remove(handler.getUser());
-  }
-
-  public List<User> getUsers()
-  {
-    return users;
-  }
-
-  public void sendMessageInPM(PrivateMessage pm)
-  {
-    for (ServerSocketHandler handler : connections)
-    {
-
-      if(handler.getUser().equals(pm.getUserOne())||handler.getUser().equals(pm.getUserTwo()))
-        handler.sendMessageInPM(pm);
-    }
   }
 }
