@@ -49,6 +49,7 @@ public class ConnectionPool
   public void removeHandler(ServerSocketHandler handler)
   {
     connections.remove(handler);
+    users.remove(handler.getUser());
   }
 
   public List<User> getUsers()

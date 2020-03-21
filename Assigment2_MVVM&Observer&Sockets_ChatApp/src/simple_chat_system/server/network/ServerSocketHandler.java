@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class ServerSocketHandler implements Runnable
 {
@@ -63,6 +64,13 @@ public class ServerSocketHandler implements Runnable
           pool.sendMessageInPM(pm);
         }
       }
+    }
+    catch (SocketException e)
+    {
+      e.printStackTrace();
+
+      pool.removeHandler(this);
+
     }
     catch (IOException | ClassNotFoundException e)
     {
