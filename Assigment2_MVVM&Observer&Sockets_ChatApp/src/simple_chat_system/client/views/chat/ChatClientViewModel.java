@@ -35,6 +35,16 @@ mainModel.addListener("AddNewUser",this::getUsersList);
     mainModel.addListener("SendInvitePM",this::receiveInvitePM);
     mainModel.addListener("SendInviteAcceptPM",this::sendInviteAcceptPM);
     mainModel.addListener("SetUsernameInChat",this::setUsernameInChat);
+    mainModel.addListener("RemoveUser",this::removeFromUsersList);
+  }
+
+  private void removeFromUsersList(PropertyChangeEvent propertyChangeEvent)
+  {
+    User user= (User) propertyChangeEvent.getNewValue();
+    Platform.runLater( () -> {
+      usersList.remove(user);
+      System.out.println(usersList);
+    });
   }
 
   private void setUsernameInChat(PropertyChangeEvent propertyChangeEvent)

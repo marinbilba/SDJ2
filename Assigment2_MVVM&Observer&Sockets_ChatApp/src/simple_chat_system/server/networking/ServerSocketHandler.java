@@ -3,6 +3,7 @@ package simple_chat_system.server.networking;
 import simple_chat_system.transferobjects.*;
 import simple_chat_system.transferobjects.messages.PrivateMessage;
 import simple_chat_system.transferobjects.messages.PublicMessage;
+import simple_chat_system.transferobjects.util.Request;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -44,9 +45,7 @@ public class ServerSocketHandler implements Runnable
           System.out
               .println("[SERVER] " + user.getUsername() + " joined the chat");
           pool.userJoin(user);
-          UserList users = new UserList();
-          users.addList(pool.getUsers());
-          outToClient.writeObject(users);
+          updateUsersList();
         }
         else if (obj instanceof PublicMessage)
         {
@@ -65,14 +64,29 @@ public class ServerSocketHandler implements Runnable
         }
       }
     }
-    catch (SocketException e)
-    {
-      e.printStackTrace();
-
-      pool.removeHandler(this);
-
-    }
     catch (IOException | ClassNotFoundException e)
+    {
+      try
+      {
+        pool.removeHandler(this);
+        socket.close();
+      }
+      catch (IOException ex)
+      {
+        ex.printStackTrace();
+      }
+    }
+  }
+
+  public void updateUsersList()
+  {
+    try
+    {
+      UserList users = new UserList();
+      users.addList(pool.getUsers());
+      outToClient.writeObject(users);
+    }
+    catch (IOException e)
     {
       e.printStackTrace();
     }
@@ -127,6 +141,19 @@ public class ServerSocketHandler implements Runnable
     try
     {
       outToClient.writeObject(pm);
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  public void userLeft(User user)
+  {
+    Request request = new Request("UserLeft",user);
+    try
+    {
+      outToClient.writeObject(request);
     }
     catch (IOException e)
     {

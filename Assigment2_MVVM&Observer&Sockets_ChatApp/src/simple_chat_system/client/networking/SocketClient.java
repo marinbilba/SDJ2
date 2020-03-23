@@ -86,6 +86,11 @@ socketHandler.addUser(username);
   {
     support.firePropertyChange("PrivateMessages",null,pm);
   }
+
+  public void removeFromList(User user)
+  {
+    support.firePropertyChange("RemoveUser",null,user);
+  }
 }
 
 

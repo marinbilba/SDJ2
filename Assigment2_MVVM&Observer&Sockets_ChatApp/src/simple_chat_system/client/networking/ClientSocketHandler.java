@@ -3,6 +3,7 @@ package simple_chat_system.client.networking;
 import simple_chat_system.transferobjects.*;
 import simple_chat_system.transferobjects.messages.PrivateMessage;
 import simple_chat_system.transferobjects.messages.PublicMessage;
+import simple_chat_system.transferobjects.util.Request;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -47,6 +48,7 @@ public class ClientSocketHandler implements Runnable
         else if (obj instanceof UserList)
         {
           UserList users = (UserList) obj;
+
           for (int i = 0; i <users.getSize() ; i++)
           {
             addToUsersList(users.get(i));
@@ -59,6 +61,12 @@ public class ClientSocketHandler implements Runnable
         {
           PrivateMessage pm = (PrivateMessage) obj;
           messagePmReceived(pm);
+        }else  if (obj instanceof Request)
+        {
+          Request request=(Request)obj;
+          if(request.getType().equals("UserLeft")){
+            userLeft(request.getArg());
+          }
         }
       }
     }
@@ -66,6 +74,12 @@ public class ClientSocketHandler implements Runnable
     {
       e.printStackTrace();
     }
+  }
+
+  private void userLeft(Object arg)
+  {
+    User user=(User) arg;
+socketClient.removeFromList(user);
   }
 
   //  BACK TO FXML

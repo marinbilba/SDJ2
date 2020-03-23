@@ -29,6 +29,7 @@ this.client=client;
       client.addListener("MessageForEveryone",this::receiveMessageInChat);
       client.addListener("SendInvitePM",this::receiveInvitePM);
       client.addListener("PrivateMessages",this::receiveMessagesPM);
+      client.addListener("RemoveUser",this::removeFromUsersList);
     }
     catch (IOException e)
     {
@@ -36,7 +37,12 @@ this.client=client;
     }
   }
 
-// PRIVATE CHAT
+  private void removeFromUsersList(PropertyChangeEvent propertyChangeEvent)
+  {
+    support.firePropertyChange(propertyChangeEvent);
+  }
+
+  // PRIVATE CHAT
   @Override public void sendInviteToPM(User user)
   {
     UsersPM usersPM = new UsersPM(this.user,user);

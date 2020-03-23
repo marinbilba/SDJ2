@@ -62,6 +62,19 @@ public class ConnectionPool
   public void removeHandler(ServerSocketHandler handler)
   {
     connections.remove(handler);
-    users.remove(handler.getUser());
+    userLeft(handler.getUser());
+  }
+
+  private void userLeft(User user)
+  {
+    users.remove(user);
+    for (ServerSocketHandler handler : connections)
+    {
+      if (handler.getUser() != null &&!handler.getUser().equals(user))
+      {
+        handler.userLeft(user);
+      }
+    }
+
   }
 }
