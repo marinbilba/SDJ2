@@ -17,10 +17,6 @@ public class User implements Serializable
     return username;
   }
 
-  @Override public String toString()
-  {
-    return  username;
-  }
   public boolean equals(Object obj){
     if(!(obj instanceof User))
       return false;
@@ -28,5 +24,8 @@ public class User implements Serializable
     return username.equals(other.username);
   }
 
-
+  @Override public String toString()
+  {
+    return  username;
+  }
 }

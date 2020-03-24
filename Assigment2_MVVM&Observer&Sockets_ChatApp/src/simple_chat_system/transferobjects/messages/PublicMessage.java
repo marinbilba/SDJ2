@@ -1,7 +1,6 @@
 package simple_chat_system.transferobjects.messages;
 
 import simple_chat_system.transferobjects.User;
-import simple_chat_system.transferobjects.messages.Message;
 
 import java.io.Serializable;
 
@@ -15,13 +14,18 @@ public class PublicMessage implements Serializable
     this.username = username;
     this.message = message;
   }
-public User getUser(){
+
+  public User message()
+  {
     return username;
-}
-public Message getMessage(){
+  }
+
+  public Message getMessage()
+  {
     return message;
-}
-  public String  getUsername()
+  }
+
+  public String getUsername()
   {
     return username.getUsername();
   }
