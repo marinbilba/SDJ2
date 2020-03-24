@@ -41,6 +41,7 @@ public void init(PrivateChatViewModel privateChatVM, User user)
       }
     });
     userDisplayedName.setText("You nickname is: '" + user.getUsername()+"'");
+
   }
 
 
@@ -50,4 +51,5 @@ public void init(PrivateChatViewModel privateChatVM, User user)
     pmVM.sendMessageInPM(new PrivateMessage(user,message));
     textField.clear();
   }
+
 }

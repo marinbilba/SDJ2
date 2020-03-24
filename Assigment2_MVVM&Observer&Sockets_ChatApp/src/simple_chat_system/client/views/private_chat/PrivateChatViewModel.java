@@ -14,10 +14,12 @@ import simple_chat_system.transferobjects.util.Subject;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
 public class PrivateChatViewModel
 {
   private MainModel mainModel;
+
   private ObservableList<User> users;
   private PropertyChangeSupport support;
   private StringProperty message;
