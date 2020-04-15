@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="392.0" prefWidth="614.0"
+      xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.ChatViewController">
+    <children>
+        <HBox prefHeight="65.0" prefWidth="600.0"
+              style="-fx-background-color: ffda91;">
+            <children>
+                <Label prefHeight="38.0" prefWidth="80.0" text="Server">
+                    <font>
+                        <Font name="System Bold" size="26.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="260.0" top="15.0"/>
+                    </HBox.margin>
+                </Label>
+            </children>
+        </HBox>
+        <HBox prefHeight="230.0" prefWidth="600.0">
+            <children>
+                <ScrollPane prefHeight="201.0" prefWidth="570.0">
+                    <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0"
+                                top="15.0"/>
+                    </HBox.margin>
+                    <content>
+                        <TableView prefHeight="198.0" prefWidth="568.0" fx:id="messageTable">
+                            <columns>
+                                <TableColumn prefWidth="461.6000244617462"
+                                             text="Message" fx:id="messageColumn"/>
+                                <TableColumn prefWidth="104.79998779296875"
+                                             text="User" fx:id="userColumn"/>
+                            </columns>
+                        </TableView>
+                    </content>
+                </ScrollPane>
+            </children>
+        </HBox>
+        <HBox prefHeight="36.0" prefWidth="600.0">
+            <children>
+                <TextField prefHeight="26.0" prefWidth="512.0" fx:id="messageField">
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </TextField>
+                <Button mnemonicParsing="false" text="Send" onAction="#sendButtonPressed">
+                    <HBox.margin>
+                        <Insets left="14.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+        <HBox prefHeight="21.0" prefWidth="600.0"
+              style="-fx-background-color: bae6ff;">
+            <children>
+                <Label prefHeight="15.0" prefWidth="450.0" fx:id="errorLabel">
+                    <font>
+                        <Font name="System Italic" size="10.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="15.0" top="4.0"/>
+                    </HBox.margin>
+                </Label>
+                <Label text="USERS CONNECTED:">
+                    <font>
+                        <Font name="System Italic" size="10.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="15.0" top="4.0"/>
+                    </HBox.margin>
+                </Label>
+                <Label text="" fx:id="connectedLabel">
+                    <HBox.margin>
+                        <Insets left="5.0" top="4.0"/>
+                    </HBox.margin>
+                    <font>
+                        <Font name="System Bold Italic" size="10.0"/>
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+    </children>
+</VBox>

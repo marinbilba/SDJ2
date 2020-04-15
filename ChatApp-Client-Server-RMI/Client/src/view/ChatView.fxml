@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="417.0" prefWidth="616.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ChatViewController">
+    <children>
+        <HBox prefHeight="65.0" prefWidth="600.0" style="-fx-background-color: e8e0ff;">
+            <children>
+                <Label prefHeight="38.0" prefWidth="80.0" text=" Chat">
+                    <font>
+                        <Font name="System Bold" size="26.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="260.0" top="15.0" />
+                    </HBox.margin>
+                </Label>
+            </children>
+        </HBox>
+        <HBox prefHeight="230.0" prefWidth="600.0" style="-fx-background-color: fffbe0;">
+            <children>
+                <ScrollPane prefHeight="201.0" prefWidth="570.0">
+                    <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                    </HBox.margin>
+               <content>
+                  <TextArea fx:id="textAreaChat" prefHeight="200.0" prefWidth="554.0" />
+               </content>
+                </ScrollPane>
+            </children>
+        </HBox>
+        <HBox prefHeight="36.0" prefWidth="600.0" style="-fx-background-color: fffbe0;">
+            <children>
+            <TextArea fx:id="sendText" prefHeight="38.0" prefWidth="550.0" />
+                <Button mnemonicParsing="false" onAction="#sendButtonPressed" text="Send">
+                    <HBox.margin>
+                        <Insets left="14.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+        <HBox prefHeight="46.0" prefWidth="614.0" style="-fx-background-color: e8e0ff;">
+            <children>
+                <VBox prefHeight="36.0" prefWidth="465.0">
+                    <children>
+                        <Label prefHeight="15.0" prefWidth="330.0" text="A RANDOM NAMETAG IS ASSIGNED AUTOMATICALY! ">
+                            <font>
+                                <Font name="System Bold Italic" size="10.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="18.0" top="9.0" />
+                            </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Label prefHeight="15.0" prefWidth="151.0" text="ENTER SETTINGS TO CHANGE IT">
+                                    <font>
+                                        <Font name="System Italic" size="10.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="errorLabel" prefHeight="18.0" prefWidth="279.0" textFill="RED">
+                                    <HBox.margin>
+                                        <Insets left="5.0" />
+                                    </HBox.margin>
+                                    <font>
+                                        <Font name="System Bold Italic" size="10.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="18.0" />
+                            </VBox.margin>
+                        </HBox>
+                    </children>
+                </VBox>
+                <Button mnemonicParsing="false" onAction="#settingsButtonPressed" text="Settings">
+                    <HBox.margin>
+                        <Insets left="14.0" top="10.0" />
+                    </HBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#exitButtonPressed" text="Exit">
+                    <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>
