@@ -1,7 +1,6 @@
 package simple_chat_system.client;
 
 import javafx.application.Application;
-import simple_chat_system.client.RunApp;
 
 public class Start
 {

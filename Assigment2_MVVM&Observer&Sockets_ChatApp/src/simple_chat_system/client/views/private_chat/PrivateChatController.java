@@ -7,10 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import simple_chat_system.client.core.ViewHandler;
-import simple_chat_system.transferobjects.messages.PrivateMessage;
 import simple_chat_system.transferobjects.User;
-import simple_chat_system.transferobjects.UsersPM;
+import simple_chat_system.transferobjects.messages.PrivateMessage;
 
 public class PrivateChatController
 {
@@ -21,13 +19,13 @@ public class PrivateChatController
   public Label userDisplayedName;
 
   private User user;
-private PrivateChatViewModel pmVM;
- private SimpleStringProperty textChat;
+  private PrivateChatViewModel pmVM;
+  private SimpleStringProperty textChat;
 
-public void init(PrivateChatViewModel privateChatVM, User user)
+  public void init(PrivateChatViewModel privateChatVM, User user)
   {
     this.user = user;
-    this.pmVM =privateChatVM;
+    this.pmVM = privateChatVM;
     usersListFXML.setItems(pmVM.getUsers());
     textChat = new SimpleStringProperty();
     textChat.bind(pmVM.messageProperty());
@@ -40,15 +38,14 @@ public void init(PrivateChatViewModel privateChatVM, User user)
         textArea.appendText("\n" + t1);
       }
     });
-    userDisplayedName.setText("You nickname is: '" + user.getUsername()+"'");
+    userDisplayedName.setText("You nickname is: '" + user.getUsername() + "'");
 
   }
-
 
   public void sendButton()
   {
     String message = textField.getText();
-    pmVM.sendMessageInPM(new PrivateMessage(user,message));
+    pmVM.sendMessageInPM(new PrivateMessage(user, message));
     textField.clear();
   }
 

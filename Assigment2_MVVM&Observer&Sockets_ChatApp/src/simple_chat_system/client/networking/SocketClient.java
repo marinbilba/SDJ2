@@ -1,6 +1,7 @@
 package simple_chat_system.client.networking;
 
-import simple_chat_system.transferobjects.*;
+import simple_chat_system.transferobjects.User;
+import simple_chat_system.transferobjects.UsersPM;
 import simple_chat_system.transferobjects.messages.PrivateMessage;
 import simple_chat_system.transferobjects.messages.PublicMessage;
 
@@ -18,12 +19,11 @@ public class SocketClient implements Client
   private ClientSocketHandler socketHandler;
   private Socket socket;
 
-
-private PropertyChangeSupport support;
+  private PropertyChangeSupport support;
 
   @Override public void start() throws IOException
   {
-    support=new PropertyChangeSupport(this);
+    support = new PropertyChangeSupport(this);
     socket = new Socket(SERVER_IP, SERVER_PORT);
     socketHandler = new ClientSocketHandler(socket, this);
     Thread thread = new Thread(socketHandler);
@@ -31,7 +31,7 @@ private PropertyChangeSupport support;
     thread.start();
   }
 
- @Override public void sendMessage(PublicMessage message)
+  @Override public void sendMessage(PublicMessage message)
   {
     socketHandler.sendMessage(message);
   }
@@ -43,27 +43,26 @@ private PropertyChangeSupport support;
 
   @Override public void sendMessageInPMToServer(PrivateMessage message)
   {
-  socketHandler.sendMessageInPM(message);
+    socketHandler.sendMessageInPM(message);
 
   }
 
   @Override public void displayMessage(PublicMessage message)
   {
-    support.firePropertyChange("MessageForEveryone",null,message);
+    support.firePropertyChange("MessageForEveryone", null, message);
   }
 
   @Override public void addUser(User username)
   {
-socketHandler.addUser(username);
+    socketHandler.addUser(username);
   }
 
   public void addToList(User user)
   {
     System.out
         .println("[CLIENT] user " + user.getUsername() + " added to list");
-    support.firePropertyChange("AddNewUser",null,user);
+    support.firePropertyChange("AddNewUser", null, user);
   }
-
 
   @Override public void addListener(String eventName,
       PropertyChangeListener listener)
@@ -79,17 +78,17 @@ socketHandler.addUser(username);
 
   public void sendInvitePmFromServer(UsersPM usersPM)
   {
-    support.firePropertyChange("SendInvitePM",null, usersPM);
+    support.firePropertyChange("SendInvitePM", null, usersPM);
   }
 
   public void displayMessagesPM(PrivateMessage pm)
   {
-    support.firePropertyChange("PrivateMessages",null,pm);
+    support.firePropertyChange("PrivateMessages", null, pm);
   }
 
   public void removeFromList(User user)
   {
-    support.firePropertyChange("RemoveUser",null,user);
+    support.firePropertyChange("RemoveUser", null, user);
   }
 }
 

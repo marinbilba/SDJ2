@@ -24,24 +24,25 @@ public class ChatClientViewModel implements Subject
   private ObservableList<User> usersList;
   private MainModel mainModel;
   private StringProperty message;
+
   public ChatClientViewModel(MainModel mainModel)
   {
-    support=new PropertyChangeSupport(this);
-    message=new SimpleStringProperty();
+    support = new PropertyChangeSupport(this);
+    message = new SimpleStringProperty();
     usersList = FXCollections.observableArrayList();
-this.mainModel=mainModel;
-mainModel.addListener("AddNewUser",this::getUsersList);
-    mainModel.addListener("MessageForEveryone",this::displayMessageToEveryone);
-    mainModel.addListener("SendInvitePM",this::receiveInvitePM);
-    mainModel.addListener("SendInviteAcceptPM",this::sendInviteAcceptPM);
-    mainModel.addListener("SetUsernameInChat",this::setUsernameInChat);
-    mainModel.addListener("RemoveUser",this::removeFromUsersList);
+    this.mainModel = mainModel;
+    mainModel.addListener("AddNewUser", this::getUsersList);
+    mainModel.addListener("MessageForEveryone", this::displayMessageToEveryone);
+    mainModel.addListener("SendInvitePM", this::receiveInvitePM);
+    mainModel.addListener("SendInviteAcceptPM", this::sendInviteAcceptPM);
+    mainModel.addListener("SetUsernameInChat", this::setUsernameInChat);
+    mainModel.addListener("RemoveUser", this::removeFromUsersList);
   }
 
   private void removeFromUsersList(PropertyChangeEvent propertyChangeEvent)
   {
-    User user= (User) propertyChangeEvent.getNewValue();
-    Platform.runLater( () -> {
+    User user = (User) propertyChangeEvent.getNewValue();
+    Platform.runLater(() -> {
       usersList.remove(user);
       System.out.println(usersList);
     });
@@ -49,31 +50,34 @@ mainModel.addListener("AddNewUser",this::getUsersList);
 
   private void setUsernameInChat(PropertyChangeEvent propertyChangeEvent)
   {
-     currentUser=(User) propertyChangeEvent.getNewValue();
+    currentUser = (User) propertyChangeEvent.getNewValue();
   }
 
   private void sendInviteAcceptPM(PropertyChangeEvent propertyChangeEvent)
   {
-    InviteAccept inviteAccept=(InviteAccept)propertyChangeEvent.getNewValue();
-    support.firePropertyChange("SendInviteAcceptPM",null,inviteAccept);
+    InviteAccept inviteAccept = (InviteAccept) propertyChangeEvent
+        .getNewValue();
+    support.firePropertyChange("SendInviteAcceptPM", null, inviteAccept);
   }
 
   private void receiveInvitePM(PropertyChangeEvent propertyChangeEvent)
   {
     UsersPM usersPM = ((UsersPM) propertyChangeEvent.getNewValue());
-    support.firePropertyChange("SendInvite",null, usersPM);
+    support.firePropertyChange("SendInvite", null, usersPM);
   }
 
   private void displayMessageToEveryone(PropertyChangeEvent propertyChangeEvent)
   {
-    PublicMessage publicMessage =(PublicMessage) propertyChangeEvent.getNewValue();
-    message.setValue(publicMessage.getUsername()+": "+ publicMessage.getMessageString());
+    PublicMessage publicMessage = (PublicMessage) propertyChangeEvent
+        .getNewValue();
+    message.setValue(
+        publicMessage.getUsername() + ": " + publicMessage.getMessageString());
   }
 
   private void getUsersList(PropertyChangeEvent propertyChangeEvent)
   {
-   User user= (User) propertyChangeEvent.getNewValue();
-   Platform.runLater( () -> {
+    User user = (User) propertyChangeEvent.getNewValue();
+    Platform.runLater(() -> {
       usersList.add(user);
       System.out.println(usersList);
     });
@@ -85,9 +89,9 @@ mainModel.addListener("AddNewUser",this::getUsersList);
   }
 
   public ObservableList<User> getUsersList()
-{
-  return usersList;
-}
+  {
+    return usersList;
+  }
 
   public StringProperty messageProperty()
   {
@@ -108,6 +112,7 @@ mainModel.addListener("AddNewUser",this::getUsersList);
   {
     mainModel.sendListOfPmRoomUsers(usersPM);
   }
+
   @Override public void addListener(String eventName,
       PropertyChangeListener listener)
   {

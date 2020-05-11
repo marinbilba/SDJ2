@@ -1,6 +1,8 @@
 package simple_chat_system.client.networking;
 
-import simple_chat_system.transferobjects.*;
+import simple_chat_system.transferobjects.User;
+import simple_chat_system.transferobjects.UserList;
+import simple_chat_system.transferobjects.UsersPM;
 import simple_chat_system.transferobjects.messages.PrivateMessage;
 import simple_chat_system.transferobjects.messages.PublicMessage;
 import simple_chat_system.transferobjects.util.Request;
@@ -49,22 +51,27 @@ public class ClientSocketHandler implements Runnable
         {
           UserList users = (UserList) obj;
 
-          for (int i = 0; i <users.getSize() ; i++)
+          for (int i = 0; i < users.getSize(); i++)
           {
             addToUsersList(users.get(i));
           }
-        }else if(obj instanceof UsersPM){
+        }
+        else if (obj instanceof UsersPM)
+        {
           UsersPM usersPM = ((UsersPM) obj);
           sendInvitePMtoUser(usersPM);
 
-        } else if (obj instanceof PrivateMessage)
+        }
+        else if (obj instanceof PrivateMessage)
         {
           PrivateMessage pm = (PrivateMessage) obj;
           messagePmReceived(pm);
-        }else  if (obj instanceof Request)
+        }
+        else if (obj instanceof Request)
         {
-          Request request=(Request)obj;
-          if(request.getType().equals("UserLeft")){
+          Request request = (Request) obj;
+          if (request.getType().equals("UserLeft"))
+          {
             userLeft(request.getArg());
           }
         }
@@ -78,8 +85,8 @@ public class ClientSocketHandler implements Runnable
 
   private void userLeft(Object arg)
   {
-    User user=(User) arg;
-socketClient.removeFromList(user);
+    User user = (User) arg;
+    socketClient.removeFromList(user);
   }
 
   //  BACK TO FXML
@@ -88,7 +95,6 @@ socketClient.removeFromList(user);
     socketClient.displayMessagesPM(pm);
 
   }
-
 
   private void sendInvitePMtoUser(UsersPM usersPM)
   {
@@ -103,7 +109,8 @@ socketClient.removeFromList(user);
   private void messageReceived(PublicMessage message)
   {
     socketClient.displayMessage(message);
-    System.out.println(message.getUsername() + " " + message.getMessageString());
+    System.out
+        .println(message.getUsername() + " " + message.getMessageString());
   }
 
   //  TO SERVER

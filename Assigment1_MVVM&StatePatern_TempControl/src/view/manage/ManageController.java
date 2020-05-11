@@ -2,15 +2,11 @@ package view.manage;
 
 import core.ViewHandler;
 import core.ViewModelFactory;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Slider;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 public class ManageController
 {

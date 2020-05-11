@@ -61,6 +61,7 @@ public class ChatClientController
           ObservableValue<? extends String> observableValue, String s,
           String t1)
       {
+        System.out.println("LALALA");
         textArea.appendText("\n" + t1);
       }
     });

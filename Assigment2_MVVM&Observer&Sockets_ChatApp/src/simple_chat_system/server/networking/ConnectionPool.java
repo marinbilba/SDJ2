@@ -1,6 +1,7 @@
 package simple_chat_system.server.networking;
 
-import simple_chat_system.transferobjects.*;
+import simple_chat_system.transferobjects.User;
+import simple_chat_system.transferobjects.UsersPM;
 import simple_chat_system.transferobjects.messages.PrivateMessage;
 import simple_chat_system.transferobjects.messages.PublicMessage;
 
@@ -24,13 +25,14 @@ public class ConnectionPool
   {
     for (ServerSocketHandler handler : connections)
     {
-      if (handler.getUser() != null &&!handler.getUser().equals(user))
-        {
-          handler.joinChat(user);
-        }
+      if (handler.getUser() != null && !handler.getUser().equals(user))
+      {
+        handler.joinChat(user);
+      }
     }
     users.add(user);
   }
+
   public void inviteToPM(UsersPM usersPM)
   {
     for (ServerSocketHandler handler : connections)
@@ -41,19 +43,23 @@ public class ConnectionPool
       }
     }
   }
+
   public void sendMessageInPM(PrivateMessage pm)
   {
     for (ServerSocketHandler handler : connections)
     {
 
-      if(handler.getUser().equals(pm.getUserOne())||handler.getUser().equals(pm.getUserTwo()))
+      if (handler.getUser().equals(pm.getUserOne()) || handler.getUser()
+          .equals(pm.getUserTwo()))
         handler.sendMessageInPM(pm);
     }
   }
+
   public List<User> getUsers()
   {
     return users;
   }
+
   public synchronized void addHandler(ServerSocketHandler handler)
   {
     connections.add(handler);
@@ -70,7 +76,7 @@ public class ConnectionPool
     users.remove(user);
     for (ServerSocketHandler handler : connections)
     {
-      if (handler.getUser() != null &&!handler.getUser().equals(user))
+      if (handler.getUser() != null && !handler.getUser().equals(user))
       {
         handler.userLeft(user);
       }

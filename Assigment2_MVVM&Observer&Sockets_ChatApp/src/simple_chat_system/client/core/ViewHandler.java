@@ -1,17 +1,13 @@
 package simple_chat_system.client.core;
 
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import simple_chat_system.client.views.chat.ChatClientController;
 import simple_chat_system.client.views.login.LoginController;
 import simple_chat_system.client.views.private_chat.PrivateChatController;
 import simple_chat_system.transferobjects.User;
-import simple_chat_system.transferobjects.UsersPM;
 
 import java.io.IOException;
 
@@ -81,6 +77,7 @@ public class ViewHandler
     stage2.setScene(chatPM);
     stage2.show();
   }
+
   public void openPrivateChat2(User user)
   {
     Stage stage3 = new Stage();
@@ -97,6 +94,7 @@ public class ViewHandler
     stage3.setScene(chatPM2);
     stage3.show();
   }
+
   private Parent getRootByPath(String path, FXMLLoader loader)
   {
     loader.setLocation(getClass().getResource(path));

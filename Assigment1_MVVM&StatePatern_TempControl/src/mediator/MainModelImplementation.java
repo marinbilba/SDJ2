@@ -7,7 +7,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 public class MainModelImplementation implements MainModel
 {

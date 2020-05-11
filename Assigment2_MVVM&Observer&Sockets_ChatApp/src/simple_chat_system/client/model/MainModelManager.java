@@ -1,7 +1,8 @@
 package simple_chat_system.client.model;
 
 import simple_chat_system.client.networking.Client;
-import simple_chat_system.transferobjects.*;
+import simple_chat_system.transferobjects.User;
+import simple_chat_system.transferobjects.UsersPM;
 import simple_chat_system.transferobjects.messages.Message;
 import simple_chat_system.transferobjects.messages.PrivateMessage;
 import simple_chat_system.transferobjects.messages.PublicMessage;
@@ -21,15 +22,15 @@ public class MainModelManager implements MainModel
   public MainModelManager(Client client)
   {
     support = new PropertyChangeSupport(this);
-this.client=client;
- try
+    this.client = client;
+    try
     {
       client.start();
-      client.addListener("AddNewUser",this::addToUsersList);
-      client.addListener("MessageForEveryone",this::receiveMessageInChat);
-      client.addListener("SendInvitePM",this::receiveInvitePM);
-      client.addListener("PrivateMessages",this::receiveMessagesPM);
-      client.addListener("RemoveUser",this::removeFromUsersList);
+      client.addListener("AddNewUser", this::addToUsersList);
+      client.addListener("MessageForEveryone", this::receiveMessageInChat);
+      client.addListener("SendInvitePM", this::receiveInvitePM);
+      client.addListener("PrivateMessages", this::receiveMessagesPM);
+      client.addListener("RemoveUser", this::removeFromUsersList);
     }
     catch (IOException e)
     {
@@ -45,62 +46,62 @@ this.client=client;
   // PRIVATE CHAT
   @Override public void sendInviteToPM(User user)
   {
-    UsersPM usersPM = new UsersPM(this.user,user);
+    UsersPM usersPM = new UsersPM(this.user, user);
     client.invitePmToServer(usersPM);
   }
 
   private void receiveInvitePM(PropertyChangeEvent propertyChangeEvent)
   {
     UsersPM usersPM = ((UsersPM) propertyChangeEvent.getNewValue());
-    support.firePropertyChange("SendInvitePM",null, usersPM);
+    support.firePropertyChange("SendInvitePM", null, usersPM);
   }
-
 
   @Override public void sendMessageInPmToServer(PrivateMessage message)
   {
-    PrivateMessage pm=new PrivateMessage(message.getUser(),usersPM,message.getMsg());
+    PrivateMessage pm = new PrivateMessage(message.getUser(), usersPM,
+        message.getMsg());
     client.sendMessageInPMToServer(pm);
   }
 
   private void receiveMessagesPM(PropertyChangeEvent propertyChangeEvent)
-  { PrivateMessage pm=(PrivateMessage) propertyChangeEvent.getNewValue();
-  support.firePropertyChange("PrivateMessages",null,pm);
+  {
+    PrivateMessage pm = (PrivateMessage) propertyChangeEvent.getNewValue();
+    support.firePropertyChange("PrivateMessages", null, pm);
   }
 
-//  GLOBAL CHAT
+  //  GLOBAL CHAT
   @Override public void sendListOfPmRoomUsers(UsersPM usersPM)
-  {this.usersPM=usersPM;
-    support.firePropertyChange("UsersOnlineInPM",null,usersPM);
+  {
+    this.usersPM = usersPM;
+    support.firePropertyChange("UsersOnlineInPM", null, usersPM);
   }
 
   @Override public void receiveMessageInChat(
       PropertyChangeEvent propertyChangeEvent)
   {
-    PublicMessage publicMessage =(PublicMessage) propertyChangeEvent.getNewValue();
-    support.firePropertyChange("MessageForEveryone",null, publicMessage);
+    PublicMessage publicMessage = (PublicMessage) propertyChangeEvent
+        .getNewValue();
+    support.firePropertyChange("MessageForEveryone", null, publicMessage);
   }
 
   @Override public void addToUsersList(PropertyChangeEvent propertyChangeEvent)
   {
-    User user= (User) propertyChangeEvent.getNewValue();
-    support.firePropertyChange("AddNewUser",null,user);
+    User user = (User) propertyChangeEvent.getNewValue();
+    support.firePropertyChange("AddNewUser", null, user);
   }
 
   @Override public void sendMessage(Message message)
   {
-    PublicMessage um= new PublicMessage(user,message);
-client.sendMessage(um);
+    PublicMessage um = new PublicMessage(user, message);
+    client.sendMessage(um);
   }
-
 
   @Override public void addUser(User username)
   {
     client.addUser(username);
-    this.user=username;
-    support.firePropertyChange("SetUsernameInChat",null,username);
+    this.user = username;
+    support.firePropertyChange("SetUsernameInChat", null, username);
   }
-
-
 
   @Override public void addListener(String eventName,
       PropertyChangeListener listener)

@@ -1,6 +1,7 @@
 package simple_chat_system.client.model;
 
-import simple_chat_system.transferobjects.*;
+import simple_chat_system.transferobjects.User;
+import simple_chat_system.transferobjects.UsersPM;
 import simple_chat_system.transferobjects.messages.Message;
 import simple_chat_system.transferobjects.messages.PrivateMessage;
 import simple_chat_system.transferobjects.util.Subject;

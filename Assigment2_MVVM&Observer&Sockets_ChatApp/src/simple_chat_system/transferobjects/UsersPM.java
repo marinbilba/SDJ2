@@ -1,7 +1,5 @@
 package simple_chat_system.transferobjects;
 
-import simple_chat_system.transferobjects.User;
-
 import java.io.Serializable;
 
 public class UsersPM implements Serializable

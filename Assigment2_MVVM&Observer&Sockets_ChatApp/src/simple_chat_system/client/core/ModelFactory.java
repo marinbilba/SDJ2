@@ -15,7 +15,7 @@ public class ModelFactory
 
   public MainModel getMainModel()
   {
-    if(mainModel == null)
+    if (mainModel == null)
       mainModel = new MainModelManager(cf.getClient());
     return mainModel;
   }

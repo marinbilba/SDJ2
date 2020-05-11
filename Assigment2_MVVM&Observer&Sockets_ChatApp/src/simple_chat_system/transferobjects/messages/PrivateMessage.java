@@ -1,6 +1,5 @@
 package simple_chat_system.transferobjects.messages;
 
-import javafx.collections.ObservableList;
 import simple_chat_system.transferobjects.User;
 import simple_chat_system.transferobjects.UsersPM;
 

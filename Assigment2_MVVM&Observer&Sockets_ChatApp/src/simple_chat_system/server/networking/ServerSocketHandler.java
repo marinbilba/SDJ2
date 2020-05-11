@@ -1,6 +1,8 @@
 package simple_chat_system.server.networking;
 
-import simple_chat_system.transferobjects.*;
+import simple_chat_system.transferobjects.User;
+import simple_chat_system.transferobjects.UserList;
+import simple_chat_system.transferobjects.UsersPM;
 import simple_chat_system.transferobjects.messages.PrivateMessage;
 import simple_chat_system.transferobjects.messages.PublicMessage;
 import simple_chat_system.transferobjects.util.Request;
@@ -9,7 +11,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.SocketException;
 
 public class ServerSocketHandler implements Runnable
 {
@@ -150,7 +151,7 @@ public class ServerSocketHandler implements Runnable
 
   public void userLeft(User user)
   {
-    Request request = new Request("UserLeft",user);
+    Request request = new Request("UserLeft", user);
     try
     {
       outToClient.writeObject(request);

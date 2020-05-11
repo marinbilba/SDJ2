@@ -30,6 +30,7 @@ public class ViewModelFactory
 
     return loginVM;
   }
+
   public PrivateChatViewModel getPrivateChatVM()
   {
 

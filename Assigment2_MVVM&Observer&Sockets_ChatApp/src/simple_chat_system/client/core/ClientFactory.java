@@ -9,8 +9,9 @@ public class ClientFactory
 
   public Client getClient()
   {
-    if(client==null){
-      client=new SocketClient();
+    if (client == null)
+    {
+      client = new SocketClient();
     }
     return client;
   }

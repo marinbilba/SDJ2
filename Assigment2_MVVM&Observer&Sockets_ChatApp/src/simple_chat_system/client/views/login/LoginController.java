@@ -21,7 +21,7 @@ public class LoginController
 
   public void enterChatBtn()
   {
-    if (textField.getText().length()>=4)
+    if (textField.getText().length() >= 4)
     {
       String username = textField.getText();
       loginVM.addUser(new User(username));

@@ -7,7 +7,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.*;
 import simple_chat_system.client.core.ViewHandler;
-import simple_chat_system.transferobjects.InviteAccept;
 import simple_chat_system.transferobjects.User;
 import simple_chat_system.transferobjects.UsersPM;
 import simple_chat_system.transferobjects.messages.Message;
@@ -67,7 +66,7 @@ public class ChatClientController
     chatVM.addListener("SendInvite", this::openPrivateChat);
 
     user = chatVM.getCurrentUser();
-    userDisplayedName.setText("You nickname is: '" + user.getUsername()+"'");
+    userDisplayedName.setText("You nickname is: '" + user.getUsername() + "'");
   }
 
   private void openPrivateChat(PropertyChangeEvent propertyChangeEvent)
@@ -89,9 +88,9 @@ public class ChatClientController
     else if (selected == JOptionPane.YES_OPTION)
     {
 
-        openPrivateChatForSender(usersPM.getSender());
-        Platform.runLater(() -> vh.openPrivateChat(usersPM.getReceiver()));
-        chatVM.sendListOfPmRoomUsers(usersPM);
+      openPrivateChatForSender(usersPM.getSender());
+      Platform.runLater(() -> vh.openPrivateChat(usersPM.getReceiver()));
+      chatVM.sendListOfPmRoomUsers(usersPM);
     }
   }
 
@@ -109,17 +108,22 @@ public class ChatClientController
 
   public void inviteToPmButton()
   {
-    if(usersListFXML.getSelectionModel().getSelectedItems().isEmpty()){
-     invitePmErrorLabel.setText("Select a user from the list");
-    }else
+    if (usersListFXML.getSelectionModel().getSelectedItems().isEmpty())
     {
-      User user = (User) usersListFXML.getSelectionModel().getSelectedItems().get(0);
+      invitePmErrorLabel.setText("Select a user from the list");
+    }
+    else
+    {
+      User user = (User) usersListFXML.getSelectionModel().getSelectedItems()
+          .get(0);
       if (!user.getUsername().equals(this.user.getUsername()))
       {
         chatVM.sentInviteToPM(user);
-    }else {
+      }
+      else
+      {
         invitePmErrorLabel.setText("Do you really want to talk to yourself?");
       }
     }
-    }
+  }
 }
