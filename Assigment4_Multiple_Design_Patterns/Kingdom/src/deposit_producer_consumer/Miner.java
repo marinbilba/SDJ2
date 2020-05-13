@@ -6,9 +6,9 @@ import mine_Flyweight.Valuable;
 public class Miner implements Runnable
 {
   private GemMine gemMine;
-  private GemDeposit gemDeposit;
+  private DepositQueue gemDeposit;
 
-  public Miner(GemMine gemMine, GemDeposit gemDeposit)
+  public Miner(GemMine gemMine, DepositQueue gemDeposit)
   {
     this.gemMine = gemMine;
     this.gemDeposit = gemDeposit;

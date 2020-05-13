@@ -8,7 +8,7 @@ public interface TreasureRoomDoor
 {
   int getTotalValueOfGems();
   void putGemsInTreasureRoom(ArrayList<Valuable> valuables, String person);
-  Valuable takeGemsFromTreasure();
+  Valuable takeGemFromTreasure();
 
 
   void acquireRead();

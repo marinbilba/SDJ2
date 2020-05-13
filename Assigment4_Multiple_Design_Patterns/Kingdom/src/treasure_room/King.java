@@ -28,7 +28,7 @@ public class King implements Runnable
       System.out.println("***\t\t\t\t\tKING\t\t\t\tPARTY TIME");
       do
       {
-        Valuable valuable = treasureRoomDoor.takeGemsFromTreasure();
+        Valuable valuable = treasureRoomDoor.takeGemFromTreasure();
         if (valuable != null)
         {
           kingPocket.add(valuable);

@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class Transporter implements Runnable
 {
 
-  private GemDeposit gemDeposit;
+  private DepositQueue gemDeposit;
   private ArrayList<Valuable> cart;
   private TreasureRoomDoor treasureRoomDoor;
 
-  public Transporter(GemDeposit gemDeposit,
+  public Transporter(DepositQueue gemDeposit,
       TreasureRoomDoor treasureRoomDoor)
   {
     this.treasureRoomDoor = treasureRoomDoor;

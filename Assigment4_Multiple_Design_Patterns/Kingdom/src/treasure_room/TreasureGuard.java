@@ -54,9 +54,9 @@ public class TreasureGuard implements TreasureRoomDoor
 
   }
 
-  @Override public Valuable takeGemsFromTreasure()
+  @Override public Valuable takeGemFromTreasure()
   {
-    Valuable valuable= treasureRoom.takeGemsFromTreasure();
+    Valuable valuable= treasureRoom.takeGemFromTreasure();
     if (valuable!=null)
     {
       log.add("***KING Has Taken one gem value: " + valuable.getValue());

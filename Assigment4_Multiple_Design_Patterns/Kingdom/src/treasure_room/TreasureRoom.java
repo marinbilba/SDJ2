@@ -55,7 +55,7 @@ public class TreasureRoom implements TreasureRoomDoor
     }
   }
 
-  @Override public Valuable takeGemsFromTreasure()
+  @Override public Valuable takeGemFromTreasure()
   {
     if (treasure.size() == 0)
     {

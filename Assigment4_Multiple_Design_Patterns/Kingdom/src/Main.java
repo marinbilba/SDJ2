@@ -1,3 +1,4 @@
+import deposit_producer_consumer.DepositQueue;
 import deposit_producer_consumer.GemDeposit;
 import deposit_producer_consumer.Miner;
 import deposit_producer_consumer.Transporter;
@@ -9,7 +10,8 @@ public class Main
   public static void main(String[] args)
   {
     GemMine gemMine=new GemMine(500,500,500,500);
-    GemDeposit gemDeposit=new GemDeposit(500);
+    DepositQueue gemDeposit=new GemDeposit(500);
+
 
     TreasureRoom treasureRoom=new TreasureRoom();
     TreasureRoomDoor treasureRoomDoor=new TreasureGuard(treasureRoom);
